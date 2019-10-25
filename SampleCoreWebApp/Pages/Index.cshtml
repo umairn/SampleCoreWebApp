@@ -1,0 +1,20 @@
+﻿@page
+@model IndexModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div style="margin: 20px; border-radius: 0; color: white; background-color: #0082be" class="jumbotron">
+            <h1 class="display-4">@Environment.MachineName</h1>
+            <p class="lead">This is a simple ASP.NET Core Web Application that returns the name of the host running the App</p>
+            <hr class="my-4" style="background-color: white">
+            <p class="lead">Powered by Microsoft Azure Kubernetes Service (AKS) and .NET Core 2.2</p>
+            <p><b>Message</b>: @Configuration["Message"]</p>
+            <p><b>Application Version</b>: @Configuration["Version"]</p>
+        </div>
+    </div>
+</div>
