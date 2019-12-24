@@ -1,12 +1,13 @@
+# Docerfile for Sample Application 
 
-
+# Indicates that dotnetcore 2.1 image wll be used as the base image and will be stored in ap directory
 FROM microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-sac2016 AS base
 WORKDIR /app
-
 
 # copy csproj and restore as distinct layers
 FROM microsoft/dotnet:2.1-sdk-nanoserver-sac2016 AS build
 WORKDIR /src
+
 COPY ["SampleCoreWebApp/SampleCoreWebApp.csproj", "SampleCoreWebApp/"]
 RUN dotnet restore "SampleCoreWebApp/SampleCoreWebApp.csproj"
 
@@ -15,7 +16,7 @@ COPY . .
 WORKDIR "/src/SampleCoreWebApp"
 RUN dotnet build "SampleCoreWebApp.csproj" -c Release -o /app
 
-# publish 
+# publish
 FROM build AS publish
 RUN dotnet publish "SampleCoreWebApp.csproj" -c Release -o /app
 
